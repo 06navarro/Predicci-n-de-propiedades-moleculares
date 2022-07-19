@@ -4,3 +4,4 @@ Victor Gabriel Navarro 1037577906 Ingenieria civil
 Estiven Gutierrez  Perez 1035833811 Ingenieria industrial
 Esteban Quintero Gomez 1007459499 Ingenieria mecanica 
 
+farro
