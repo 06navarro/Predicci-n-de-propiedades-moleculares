@@ -230,3 +230,6 @@ SCC=pd.read_csv('../input/sample_submission.csv')
 SCC['scalar_coupling_constant']= y_pred
 SCC.to_csv('Linear_Regression_model.csv',index=False)
 
+
+
+#continua
