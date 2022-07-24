@@ -6,7 +6,7 @@ Esteban Quintero Gomez 1007459499 Ingenieria mecanica
 
 Datos:
 1. Enlace de datos https://www.kaggle.com/code/ramanchandra/predicting-molecualr-properties/data
-2. Para descargar los datos 
+2. Para descargar los datos descargamos los datos de esta pagina, creamos una carpeta int para finalmente llamarlos desde ese directorio
 
 
 Videos:
