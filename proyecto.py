@@ -109,4 +109,10 @@ train_df=train_df.drop(columns=['molecule_name','type'],axis=1)
 display(train_df.head(6))
 
 
+test_df=test_df.drop(columns=['molecule_name','type'],axis=1)
+display(test_df.head(10))
+
+
+
+
 
