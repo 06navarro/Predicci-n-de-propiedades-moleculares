@@ -113,6 +113,49 @@ test_df=test_df.drop(columns=['molecule_name','type'],axis=1)
 display(test_df.head(10))
 
 
+##############################################
+#Histograma de visualizacion
+
+train_df['type_0']=train_df.type_0.astype('category')
+train_df['atom_0']=train_df.atom_0.astype('category')
+train_df['atom_1']=train_df.atom_1.astype('category')
+
+
+test_df['type_0']=test_df.type_0.astype('category')
+test_df['atom_0']=test_df.atom_0.astype('category')
+test_df['atom_1']=test_df.atom_1.astype('category')
+
+plt.hist(train_df['scalar_coupling_constant'])
+plt.ylabel('No of times')
+plt.xlabel('scalar copling constant')
+plt.show()
+
+plt.hist(train_df['dist_vector'])
+plt.ylabel('No of times')
+plt.xlabel('Distance vector')
+plt.show()
+
+plt.hist(train_df['dist_X'])
+plt.ylabel('No of times')
+plt.xlabel('X distance vector')
+plt.show()
+
+
+plt.hist(train_df['dist_Y'])
+plt.ylabel('No of times')
+plt.xlabel('Y distance vector')
+plt.show()
+
+
+plt.hist(train_df['dist_Z'])
+plt.ylabel('No of times')
+plt.xlabel('Z distance vector')
+plt.show()
+
+train_df.head(5)
+
+
+
 
 
 
