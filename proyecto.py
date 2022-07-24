@@ -154,8 +154,79 @@ plt.show()
 
 train_df.head(5)
 
+#########################################################333
+#Modelo de prediccion 
 
 
 
+threshold=0.95
+corr_matrix=train_df.corr().abs()
 
+upper=corr_matrix.where(np.triu(np.ones(corr_matrix.shape),k=1).astype(np.bool))
+
+to_drop=[column for column in upper.columns if any(upper[column]>threshold)]
+print('There are are %d columns to remove.'%(len(to_drop)))
+
+train_df=train_df.drop(columns=to_drop)
+test_df=test_df.drop(columns=to_drop)
+print('Training data shape',train_df.shape)
+print('Testing data shape',test_df.shape)
+
+
+Attributes=['atom_index_0','atom_index_1','type_0','x_0','y_0','z_0','atom_0',
+            'atom_1','x_1','y_1','z_1','dist_vector','dist_X','dist_Y','dist_Z']
+
+cat_attributes=['type_0','atom_0','atom_1']
+target_label=['scalar_coupling_constant']
+
+
+X_train=train_df[Attributes]
+X_test=test_df[Attributes]
+y_target=train_df[target_label]
+
+X_train=pd.get_dummies(data=X_train,columns=cat_attributes)
+X_test=pd.get_dummies(data=X_test,columns=cat_attributes)
+
+print(X_train.shape,X_test.shape)
+display(y_target.shape)
+
+
+
+from sklearn.preprocessing import LabelEncoder
+for f in ['type','atom_index_0','atom_index_1','atom_0','atom_1']:
+    if f in good_columns:
+        lbl=LabelEncoder()
+        lbl.fit(list(X_train[f].values)+list(X_test[f].values))
+        X_train[f]=lbl.transform(list(X_train[f].values))
+        X_test[f]=lbl.transform(list(X_test[f].values))
+
+
+
+X_train.head(6)
+X_test.head(6)
+y_target.head(6)
+
+
+linear_reg=linear_model.LinearRegression()
+n_folds=5
+lin_reg_score=cross_val_score(linear_reg,X_train,y_target,
+                          scoring=make_scorer(mean_squared_error),
+                          cv=n_folds)
+lin_score=sum(lin_reg_score)/n_folds
+print('Lin_score:',lin_score)  
+
+
+lr_model=linear_reg.fit(X_train,y_target)
+score=np.round(lr_model.score(X_train,y_target),3)
+print('Accuracy of trained model:',score)
+model_coeff=np.round(lr_model.coef_,3)
+print('Model coefficients:',model_coeff)
+model_intercept=np.round(lr_model.intercept_,3)
+print('Model intercept value:',model_intercept)
+
+from sklearn.metrics import r2_score
+y_pred=lr_model.predict(X_test)
+SCC=pd.read_csv('../input/sample_submission.csv')
+SCC['scalar_coupling_constant']= y_pred
+SCC.to_csv('Linear_Regression_model.csv',index=False)
 
