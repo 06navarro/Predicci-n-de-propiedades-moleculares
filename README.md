@@ -4,3 +4,10 @@ Victor Gabriel Navarro 1037577906 Ingenieria civil
 Estiven Gutierrez  Perez 1035833811 Ingenieria industrial
 Esteban Quintero Gomez 1007459499 Ingenieria mecanica 
 
+Datos:
+1. Enlace de datos https://www.kaggle.com/code/ramanchandra/predicting-molecualr-properties/data
+2. Para descargar los datos 
+
+
+Videos:
+1. Enlace de los videos: 
